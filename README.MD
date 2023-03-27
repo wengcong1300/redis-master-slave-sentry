@@ -4,7 +4,7 @@
 ### 赋予权限
 ```shell
 chmod -R 777 logs
-chmod -R 777 sentinel-cp.conf
+chmod -R 777 sentinel*.conf
 ```
 
 ### 部署主从复制+哨兵模式

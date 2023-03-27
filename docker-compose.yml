@@ -1,62 +1,74 @@
 version: '3.2'
+networks:
+  redis:
+
 services:
   redis-6379:
     image: redis:$REDIS_VERSION
-    container_name: redis6379
+    container_name: redis-6379
     volumes:
       - ./data:/data
       - ./redis6379.conf:/etc/redis/redis.conf
       - ./logs/redis6379:/var/log
     ports:
-      - "6379:6379"
+      - "10.0.7.2:6379:6379"
     command:
       redis-server /etc/redis/redis.conf
     restart: always
+    network_mode: host
+
   redis-6380:
     image: redis:$REDIS_VERSION
-    container_name: redis6380
+    container_name: redis-6380
     volumes:
       - ./data:/data
       - ./redis6380.conf:/etc/redis/redis.conf
       - ./logs/redis6380:/var/log
     ports:
-      - "6380:6380"
+      - "10.0.7.2:6380:6380"
     command:
       redis-server /etc/redis/redis.conf
     restart: always
+    network_mode: host
+
   redis-sentinel-26380:
     image: redis:$REDIS_VERSION
     container_name: redis-sentinel-26380
     volumes:
       - ./data:/data
-      - ./sentinel-cp.conf:/etc/redis/sentinel-cp.conf
+      - ./sentinel26380.conf:/etc/redis/sentinel.conf
       - ./logs/sentinel26380:/var/log
     ports:
-      - "26380:26379"
+      - "10.0.7.2:26380:26380"
     command:
-      redis-server /etc/redis/sentinel-cp.conf --sentinel
+      redis-server /etc/redis/sentinel.conf --sentinel
     restart: always
+    network_mode: host
+
   redis-sentinel-26381:
     image: redis:$REDIS_VERSION
     container_name: redis-sentinel-26381
     volumes:
       - ./data:/data
-      - ./sentinel-cp.conf:/etc/redis/sentinel-cp.conf
+      - ./sentinel26381.conf:/etc/redis/sentinel.conf
       - ./logs/sentinel26381:/var/log/
     ports:
-      - "26381:26379"
+      - "10.0.7.2:26381:26381"
     command:
-      redis-server /etc/redis/sentinel-cp.conf --sentinel
+      redis-server /etc/redis/sentinel.conf --sentinel
     restart: always
+    network_mode: host
+
   redis-sentinel-26382:
     image: redis:$REDIS_VERSION
     container_name: redis-sentinel-26382
     volumes:
       - ./data:/data
-      - ./sentinel-cp.conf:/etc/redis/sentinel-cp.conf
+      - ./sentinel26382.conf:/etc/redis/sentinel.conf
       - ./logs/sentinel26382:/var/log
     ports:
-      - "26382:26379"
+      - "10.0.7.2:26382:26382"
     command:
-      redis-server /etc/redis/sentinel-cp.conf --sentinel
+      redis-server /etc/redis/sentinel.conf --sentinel
     restart: always
+    network_mode: host
