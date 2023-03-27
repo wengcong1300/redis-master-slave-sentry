@@ -1,7 +1,4 @@
 version: '3.2'
-networks:
-  redis:
-
 services:
   redis-6379:
     image: redis:$REDIS_VERSION
