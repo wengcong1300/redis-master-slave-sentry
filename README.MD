@@ -23,7 +23,7 @@ docker-compose up -d
 2. 启动redisdemo项目
 3. 在浏览器输入knife4j在线调试地址：http://localhost:8091/doc.html
 4. 设置一个key-value，验证是否连通部署的redis主从+哨兵
-![img.png](.\readme-imgs\img.png)
+![img.png](readme-imgs/img.png)
 5. 在服务器stop主节点的redis
 ```shell
 docker stop 主节点容器id
